@@ -19,6 +19,6 @@ Remove-Item ./out/, ./$pg.zip, ./$pg/, file_id.diz -Recurse -Force
 
 Get-ChildItem *.html | ForEach-Object {
     $content = Get-Content $PSItem.FullName
-    $content = $content -replace [regex]::escape('<div id="jw-credits-tool">'), '<div style="display:none">'
+    $content = $content -replace [regex]::escape('<div class="jw-strip jw-strip--color-default jw-strip--padding-end" >'), '<div style="display:none">'
     Set-Content -Path $PSItem.FullName -Value $content
 }
