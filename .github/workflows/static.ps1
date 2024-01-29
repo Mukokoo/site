@@ -6,7 +6,7 @@ param(
 
 $ProgressPreference = 'SilentlyContinue'
 
-curl (irm "https://raw.githubusercontent.com/ScoopInstaller/Extras/master/bucket/$pg.json").architecture.'64bit'.url -o"./$pg.zip"
+curl.exe (irm "https://raw.githubusercontent.com/ScoopInstaller/Extras/master/bucket/$pg.json").architecture.'64bit'.url -o"./$pg.zip"
 Expand-Archive .\$pg.zip -DestinationPath .
 
 $pages = (irm "$uri/sitemap.xml").ChildNodes.url.loc -join ','
