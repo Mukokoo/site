@@ -40,6 +40,7 @@ jobs:
       - name: Minify everything
         shell: pwsh
         run: |
+          return
           if (!$IsLinux){
             Set-ExecutionPolicy Bypass -Scope Process -Force -ErrorAction Ignore
           }
