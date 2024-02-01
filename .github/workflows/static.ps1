@@ -36,6 +36,12 @@ Get-ChildItem *.html | ForEach-Object {
     $favicon_line = $content -split "`n" | Where-Object {$_.trim() -like "*rel=`"shortcut icon`"*"} 
     $content = ($content -split "`n") -replace ([Regex]::Escape($favicon_line)), '<link rel="shortcut icon" href="https://primary.jwwb.nl/public/g/a/s/temp-lgrjllrfpibgzsmnztdh/ojy3fv/websitelogo-1.png?enable-io=true&amp;enable=upscale&amp;width=100">'
     
+    # remove mobile (burger) menu
+    $content = $content -replace 'class="jw-mobile-menu__button jw-mobile-toggle"', 'class="jw-mobile-menu__button jw-mobile-toggle" style="display: none"'
+
+    # remove menu
+    $content = $content -replace 'class="menu jw-menu-copy"', 'class="menu jw-menu-copy" style="display: none"'
+
     # write the changes back
     Set-Content -Path $PSItem.FullName -Value $content
 }
