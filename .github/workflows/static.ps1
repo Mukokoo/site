@@ -32,6 +32,10 @@ Get-ChildItem *.html | ForEach-Object {
 
     $content = $content -replace 'background-position', ($background_image + 'background-position')
 
+    # replace favicon
+    $favicon_line = $content -split "`n" | Where-Object {$_.trim() -like "*rel=`"shortcut icon`"*"} 
+    $content = ($content -split "`n") -replace ([Regex]::Escape($favicon_line)), '<link rel="shortcut icon" href="https://primary.jwwb.nl/public/g/a/s/temp-lgrjllrfpibgzsmnztdh/ojy3fv/websitelogo-1.png?enable-io=true&amp;enable=upscale&amp;width=100">'
+    
     # write the changes back
     Set-Content -Path $PSItem.FullName -Value $content
 }
