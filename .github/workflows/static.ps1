@@ -23,6 +23,8 @@ Get-ChildItem *.html | ForEach-Object {
     # remove large footer banner, the "made with $bd" clearly suffices --'
     $content = $content -replace [regex]::escape('<div class="jw-strip jw-strip--color-default jw-strip--padding-end" >'), '<div style="display:none">'
 
+    $content = $content -replace [regex]::escape('</style>'), ';.js-ads{display: none !important}</style>'
+
     # $pg does not include background image, so the following injects it back into the css
     $live = Invoke-RestMethod "$uri/$($PSItem.BaseName)"
 
